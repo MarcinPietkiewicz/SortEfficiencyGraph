@@ -8,11 +8,11 @@ class QuickSort(AbstractSort):
 
     def get_numbers_list(self, numbers: list):
         print('I should get numbers list here ', numbers)
-
+        self.numbers = numbers
 
     def sort_numbers(self):
         print("I should quick sort here and return sorted list")
-        return self.numbers
+        return [x ^ 2 for x in self.numbers]
 
 
 if __name__ == '__main__':

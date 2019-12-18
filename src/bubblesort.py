@@ -8,11 +8,12 @@ class BubbleSort(AbstractSort):
 
     def get_numbers_list(self, numbers: list):
         print('I should get numbers list here ', numbers)
+        self.numbers = numbers
 
 
     def sort_numbers(self):
         print("I should bubble sort here and return sorted numbers")
-        return self.numbers
+        return [x^2 for x in self.numbers]
 
 if __name__ == '__main__':
     sortme = BubbleSort()
