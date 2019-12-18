@@ -4,9 +4,10 @@ from abc import ABC, abstractmethod
 class AbstractSort(ABC):
     def __init__(self):
         self.sort_method_name = None
+        self.numbers = []
 
     @abstractmethod
-    def get_numbers_list(self):
+    def get_numbers_list(self, numbers: list):
         raise NotImplementedError('get_list method not implemented!')
 
     @abstractmethod
