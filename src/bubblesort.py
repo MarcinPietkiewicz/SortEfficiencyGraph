@@ -12,11 +12,23 @@ class BubbleSort(AbstractSort):
 
 
     def sort_numbers(self):
-        print("I should bubble sort here and return sorted numbers")
-        return [x^2 for x in self.numbers]
+        print("Sorting (bubble sort method ...")
+        flag = True
+        a = 1
+        p = 1
+        while flag:
+            flag = False
+            for i in range(0, len(self.numbers) - a):
+                # print('przebieg', p)
+                p += 1
+                if self.numbers[i] > self.numbers[i + 1]:
+                    self.numbers[i + 1], self.numbers[i] = self.numbers[i], self.numbers[i + 1]
+                    flag = True
+            if flag == True:
+                a += 1
 
 if __name__ == '__main__':
     sortme = BubbleSort()
-    sortme.get_numbers_list([6,5,4])
+    sortme.get_numbers_list([6,5,4,3,12,1])
     sortme.sort_numbers()
     sortme.print_sort_name()

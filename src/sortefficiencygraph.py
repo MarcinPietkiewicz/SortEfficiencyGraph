@@ -56,5 +56,6 @@ if __name__ == '__main__':
     # print(sort_me.list_to_sort_2)
     # print(sort_me.list_to_sort_3)
     # print(sort_me.list_to_sort_4)
+    print(sort_me.list_to_sort_1)
     print(sort_me.get_algorithm_time(sort_me.algorithms_list[0], sort_me.list_to_sort_1))
-    print(sort_me.get_algorithm_time(sort_me.algorithms_list[0], sort_me.list_to_sort_4))
+    print(sort_me.list_to_sort_1)
