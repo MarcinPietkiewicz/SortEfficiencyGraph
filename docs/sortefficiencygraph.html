@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sort Efficiency Graph module &#8212; Sort Efficiency Graph  documentation</title>
+    <link rel="stylesheet" href="_static/graphite.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to YOUR NEXT PROJECT’S documentation !" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to YOUR NEXT PROJECT’S documentation !"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Sort Efficiency Graph  documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-sortefficiencygraph">
+<span id="sort-efficiency-graph-module"></span><h1>Sort Efficiency Graph module<a class="headerlink" href="#module-sortefficiencygraph" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="sortefficiencygraph.SortEfficiencyGraph">
+<em class="property">class </em><code class="sig-prename descclassname">sortefficiencygraph.</code><code class="sig-name descname">SortEfficiencyGraph</code><a class="reference internal" href="_modules/sortefficiencygraph.html#SortEfficiencyGraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sortefficiencygraph.SortEfficiencyGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is used to display on graph time complexity of two sorting algorithms.
+It takes 2 algorithms and creates 4 random lists to sort with given number of elements.
+Then it measures time of each algorithm when sorting those random lists.
+Lastly it displays graphs comparing time complexity of two sorting algorithms.</p>
+<dl class="method">
+<dt id="sortefficiencygraph.SortEfficiencyGraph.get_two_algorithms">
+<code class="sig-name descname">get_two_algorithms</code><span class="sig-paren">(</span><em class="sig-param">algorithm1: src.abstractsort.AbstractSort</em>, <em class="sig-param">algorithm2: src.abstractsort.AbstractSort</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sortefficiencygraph.html#SortEfficiencyGraph.get_two_algorithms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sortefficiencygraph.SortEfficiencyGraph.get_two_algorithms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method used to get two algorithms to compare later on.
+:param algorithm1:
+:param algorithm2:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sortefficiencygraph.SortEfficiencyGraph.create_data_to_sort">
+<code class="sig-name descname">create_data_to_sort</code><span class="sig-paren">(</span><em class="sig-param">length1: int</em>, <em class="sig-param">length2: int</em>, <em class="sig-param">length3: int</em>, <em class="sig-param">length4: int</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sortefficiencygraph.html#SortEfficiencyGraph.create_data_to_sort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sortefficiencygraph.SortEfficiencyGraph.create_data_to_sort" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method creates 4 unsorted lists of random numbers that will be used as a template to sort
+:param length1:
+:param length2:
+:param length3:
+:param length4:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sortefficiencygraph.SortEfficiencyGraph.plot_chart">
+<code class="sig-name descname">plot_chart</code><span class="sig-paren">(</span><em class="sig-param">algorithm: src.abstractsort.AbstractSort</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sortefficiencygraph.html#SortEfficiencyGraph.plot_chart"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sortefficiencygraph.SortEfficiencyGraph.plot_chart" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>algorithm</strong> (<em>AbstractSort class</em>) – sorting algorithm</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sortefficiencygraph.SortEfficiencyGraph.get_algorithm_time">
+<code class="sig-name descname">get_algorithm_time</code><span class="sig-paren">(</span><em class="sig-param">algorithm: src.abstractsort.AbstractSort</em>, <em class="sig-param">list_to_sort: list</em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="_modules/sortefficiencygraph.html#SortEfficiencyGraph.get_algorithm_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sortefficiencygraph.SortEfficiencyGraph.get_algorithm_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method runs algorithms with a list to sort and returns time it took.
+:param algorithm:
+:param list_to_sort: list of numbers
+:type list_to_sort: list[int]
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/universe.jpg" alt="Logo"/>
+            </a></p>
+<h3><a href="index.html">Universe</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sort Efficiency Graph module</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to YOUR NEXT PROJECT’S documentation !"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Sort Efficiency Graph  documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Marcin Pietkiewicz.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+Sort Efficiency Graph module
+===============================
+
+
+.. automodule:: sortefficiencygraph
+    :members:
+    :undoc-members:
+    :private-members:
+    :show-inheritance:
+

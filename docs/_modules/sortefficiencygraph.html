@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>sortefficiencygraph &#8212; Sort Efficiency Graph  documentation</title>
+    <link rel="stylesheet" href="../_static/graphite.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Sort Efficiency Graph  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for sortefficiencygraph</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">src.abstractsort</span> <span class="kn">import</span> <span class="n">AbstractSort</span>
+<span class="kn">from</span> <span class="nn">src.bubblesort</span> <span class="kn">import</span> <span class="n">BubbleSort</span>
+<span class="kn">from</span> <span class="nn">src.quicksort</span> <span class="kn">import</span> <span class="n">QuickSort</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+
+
+<div class="viewcode-block" id="SortEfficiencyGraph"><a class="viewcode-back" href="../sortefficiencygraph.html#sortefficiencygraph.SortEfficiencyGraph">[docs]</a><span class="k">class</span> <span class="nc">SortEfficiencyGraph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class is used to display on graph time complexity of two sorting algorithms.</span>
+<span class="sd">    It takes 2 algorithms and creates 4 random lists to sort with given number of elements.</span>
+<span class="sd">    Then it measures time of each algorithm when sorting those random lists.</span>
+<span class="sd">    Lastly it displays graphs comparing time complexity of two sorting algorithms.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">algorithms_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_1</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_2</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_3</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_4</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sort_times_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="SortEfficiencyGraph.get_two_algorithms"><a class="viewcode-back" href="../sortefficiencygraph.html#sortefficiencygraph.SortEfficiencyGraph.get_two_algorithms">[docs]</a>    <span class="k">def</span> <span class="nf">get_two_algorithms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm1</span><span class="p">:</span> <span class="n">AbstractSort</span><span class="p">,</span> <span class="n">algorithm2</span><span class="p">:</span> <span class="n">AbstractSort</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method used to get two algorithms to compare later on.</span>
+<span class="sd">        :param algorithm1:</span>
+<span class="sd">        :param algorithm2:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">algorithms_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">algorithm1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">algorithms_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">algorithm2</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SortEfficiencyGraph.create_data_to_sort"><a class="viewcode-back" href="../sortefficiencygraph.html#sortefficiencygraph.SortEfficiencyGraph.create_data_to_sort">[docs]</a>    <span class="k">def</span> <span class="nf">create_data_to_sort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">length2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">length3</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">length4</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method creates 4 unsorted lists of random numbers that will be used as a template to sort</span>
+<span class="sd">        :param length1:</span>
+<span class="sd">        :param length2:</span>
+<span class="sd">        :param length3:</span>
+<span class="sd">        :param length4:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_4</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">length1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">length2</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">length3</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">length4</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_4</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="SortEfficiencyGraph.plot_chart"><a class="viewcode-back" href="../sortefficiencygraph.html#sortefficiencygraph.SortEfficiencyGraph.plot_chart">[docs]</a>    <span class="k">def</span> <span class="nf">plot_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">:</span> <span class="n">AbstractSort</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param algorithm: sorting algorithm</span>
+<span class="sd">        :type algorithm: AbstractSort class</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_1</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_2</span><span class="p">),</span>
+                  <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_3</span><span class="p">)],[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_algorithm_time</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_1</span><span class="p">),</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">get_algorithm_time</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_2</span><span class="p">),</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">get_algorithm_time</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_to_sort_3</span><span class="p">)])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">([</span><span class="s1">&#39;sorting time&#39;</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">([</span><span class="s1">&#39;sorted elements&#39;</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;hello&#39;</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SortEfficiencyGraph.get_algorithm_time"><a class="viewcode-back" href="../sortefficiencygraph.html#sortefficiencygraph.SortEfficiencyGraph.get_algorithm_time">[docs]</a>    <span class="k">def</span> <span class="nf">get_algorithm_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">:</span> <span class="n">AbstractSort</span><span class="p">,</span> <span class="n">list_to_sort</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method runs algorithms with a list to sort and returns time it took.</span>
+<span class="sd">        :param algorithm:</span>
+<span class="sd">        :param list_to_sort: list of numbers</span>
+<span class="sd">        :type list_to_sort: list[int]</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">temporary_list_to_sort</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">list_to_sort</span><span class="p">)</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">algorithm</span><span class="o">.</span><span class="n">get_numbers_list</span><span class="p">(</span><span class="n">temporary_list_to_sort</span><span class="p">)</span>
+        <span class="n">algorithm</span><span class="o">.</span><span class="n">sort_numbers</span><span class="p">()</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">sort_me</span> <span class="o">=</span> <span class="n">SortEfficiencyGraph</span><span class="p">()</span>
+    <span class="n">sort_me</span><span class="o">.</span><span class="n">get_two_algorithms</span><span class="p">(</span><span class="n">BubbleSort</span><span class="p">(),</span> <span class="n">QuickSort</span><span class="p">())</span>
+    <span class="n">sort_me</span><span class="o">.</span><span class="n">algorithms_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">print_sort_name</span><span class="p">()</span>
+    <span class="n">sort_me</span><span class="o">.</span><span class="n">algorithms_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">print_sort_name</span><span class="p">()</span>
+    <span class="n">sort_me</span><span class="o">.</span><span class="n">create_data_to_sort</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sort_me</span><span class="o">.</span><span class="n">get_algorithm_time</span><span class="p">(</span><span class="n">sort_me</span><span class="o">.</span><span class="n">algorithms_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sort_me</span><span class="o">.</span><span class="n">list_to_sort_1</span><span class="p">))</span>
+    <span class="n">sort_me</span><span class="o">.</span><span class="n">plot_chart</span><span class="p">(</span><span class="n">sort_me</span><span class="o">.</span><span class="n">algorithms_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/universe.jpg" alt="Logo"/>
+            </a></p>
+<h3><a href="../index.html">Universe</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sortefficiencygraph.html">Sort Efficiency Graph module</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Sort Efficiency Graph  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Marcin Pietkiewicz.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.0.
+    </div>
+  </body>
+</html>
