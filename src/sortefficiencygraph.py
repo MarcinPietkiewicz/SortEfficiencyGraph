@@ -4,6 +4,7 @@ from src.abstractsort import AbstractSort
 from src.bubblesort import BubbleSort
 from src.quicksort import QuickSort
 import random
+import copy
 
 class SortEfficiencyGraph:
     def __init__(self):
@@ -40,8 +41,9 @@ class SortEfficiencyGraph:
 
 
     def get_algorithm_time(self, algorithm: AbstractSort, list_to_sort: list) -> float:
+        temporary_list_to_sort = copy.deepcopy(list_to_sort)
         start = time.time()
-        algorithm.get_numbers_list(list_to_sort)
+        algorithm.get_numbers_list(temporary_list_to_sort)
         algorithm.sort_numbers()
         end = time.time()
         return end - start
