@@ -10,6 +10,11 @@ class SortEfficiencyGraph:
         self.algorithms_list = []
         # self.bubble_sort = BubbleSort()
         # self.quick_sort = QuickSort()
+        self.list_to_sort_1 = []
+        self.list_to_sort_2 = []
+        self.list_to_sort_3 = []
+        self.list_to_sort_4 = []
+
 
     def get_two_algorithms(self, algorithm1: AbstractSort, algorithm2: AbstractSort):
         self.algorithms_list.append(algorithm1)
@@ -26,14 +31,30 @@ class SortEfficiencyGraph:
         for i in range(1, length4):
             self.list_to_sort_4.append(random.randint(1,5000))
 
+
+
     def plot_chart(self):
         plt.plot([1, 2, 3, 4])
         plt.ylabel('some numbers')
         plt.show()
 
 
-    def get_algorithm_time(self, algorithm: AbstractSort) -> float:
+    def get_algorithm_time(self, algorithm: AbstractSort, list_to_sort: list) -> float:
         start = time.time()
-        algorithm.sortnumbers()
+        algorithm.get_numbers_list(list_to_sort)
+        algorithm.sort_numbers()
         end = time.time()
         return end - start
+
+if __name__ == '__main__':
+    sort_me = SortEfficiencyGraph()
+    sort_me.get_two_algorithms(BubbleSort(), QuickSort())
+    sort_me.algorithms_list[0].print_sort_name()
+    sort_me.algorithms_list[1].print_sort_name()
+    sort_me.create_data_to_sort(100,200,300,400)
+    # print(sort_me.list_to_sort_1)
+    # print(sort_me.list_to_sort_2)
+    # print(sort_me.list_to_sort_3)
+    # print(sort_me.list_to_sort_4)
+    print(sort_me.get_algorithm_time(sort_me.algorithms_list[0], sort_me.list_to_sort_1))
+    print(sort_me.get_algorithm_time(sort_me.algorithms_list[0], sort_me.list_to_sort_4))
